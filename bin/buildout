@@ -1,0 +1,15 @@
+#!/opt/local/Library/Frameworks/Python.framework/Versions/2.5/Resources/Python.app/Contents/MacOS/Python
+
+import sys
+sys.path[0:0] = [
+  '/opt/local/lib/python2.5/site-packages',
+  '/opt/local/lib/python2.5/site-packages',
+  '/opt/local/lib/python2.5/site-packages',
+  '/opt/local/lib/python2.5/site-packages',
+  '/Users/mikko/Work/Projects/mlblog/etc/eggs/zc.buildout-1.4.4-py2.5.egg',
+  ]
+
+import zc.buildout.buildout
+
+if __name__ == '__main__':
+    zc.buildout.buildout.main()

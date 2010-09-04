@@ -1,0 +1,3 @@
+[submodule "app/lib/aetycoon"]
+	path = app/lib/aetycoon
+	url = http://github.com/Arachnid/aetycoon.git

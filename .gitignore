@@ -1,0 +1,11 @@
+/var/*
+/etc/*
+.*
+*.orig
+*.pyc
+*.pyo
+
+*~
+\#*#
+
+Thumbs.db

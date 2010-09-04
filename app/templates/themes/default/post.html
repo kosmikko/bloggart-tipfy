@@ -1,0 +1,5 @@
+{% extends "themes/%s/layout.html" % config.theme %}
+{% block body %}
+  <h2>{{post.title}}</h2>
+  {{post.body}}
+{% endblock %}

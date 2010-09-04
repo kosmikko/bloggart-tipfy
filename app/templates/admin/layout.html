@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>Tipfy Auth Example</title>
+        <link rel="stylesheet" type="text/css" href="/static/styles/screen.css">
+    </head>
+    <body>
+        <div class="yui-d1">
+            <div class="top">
+                <h1>Blog admin</h1>
+            </div>
+        </div>
+        <div class="yui-d1">
+            <div class="yui-t2">
+                <div class="yui-main">
+                    <div class="yui-b">
+                        <div class="content">
+                        {% block body %}
+                        {% endblock %}
+                        </div>
+
+                        <div class="footer">
+                            <p>Powered by <a href="http://www.tipfy.org/">tipfy</a>.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="yui-b">
+                    <ul class="menu">
+                        <li{% if section == 'home' %} class="active"{% endif %}>
+                          <a href="{{ url_for('admin/index') }}">Home</a>
+                        </li>
+                        <li{% if section == 'newpost' %} class="active"{% endif %}>
+                          <a href="{{ url_for('admin/newpost') }}">New Post</a>
+                        </li>                      
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        {%- block body_extra %}
+            <script src="/static/scripts/scripts.js"></script>
+
+            {%- block messages -%}
+                <script>
+                tipfy.instances = {};
+                tipfy.instances.messages = new tipfy.ui.Messages('tipfy-messages');
+                {% if messages %}
+                tipfy.instances.messages.addMessages({{ messages }});
+                {% endif %}
+                </script>
+            {%- endblock -%}
+        {% endblock %}
+    </body>
+</html>

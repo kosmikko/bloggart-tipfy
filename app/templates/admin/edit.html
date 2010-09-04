@@ -1,0 +1,19 @@
+{% extends 'admin/layout.html' %}
+{% block title %}{% if form.instance %}Edit{% else %}New{% endif %} Post{% endblock %}
+{% block body %}
+<h1>{% if form.instance %}Edit{% else %}New{% endif %} Post</h1>
+  {% from '_form_macros.html' import form_field %}
+    <form method="post" action="" enctype="multipart/form-data" class="tipfy-form">
+      <ol>
+        <li>{{ form_field(form.title, class='medium') }}</li>
+        <li>{{ form_field(form.body, class='medium') }}</li>
+        <li>{{ form_field(form.tags, class='medium') }}</li>
+        <li>{{ form_field(form.draft, class='medium') }}</li>
+        <li>{{ form_field(form.body_markup, class='medium') }}</li>        
+      </ol>
+      <fieldset class="submit">
+        <input type="submit" name="submit" value="Send" class="submit">
+        <input id="btn_preview" type="button" value="Preview" />        
+      </fieldset>
+    </form>
+{% endblock %}

@@ -1,0 +1,35 @@
+#!/opt/local/Library/Frameworks/Python.framework/Versions/2.5/Resources/Python.app/Contents/MacOS/Python
+
+import os
+
+join = os.path.join
+base = os.path.dirname(os.path.abspath(os.path.realpath(__file__)))
+base = os.path.dirname(base)
+
+import sys
+sys.path[0:0] = [
+  join(base, 'etc/eggs/Babel-0.9.5-py2.5.egg'),
+  join(base, 'etc/eggs/tipfy-0.6.3-py2.5.egg'),
+  '/opt/local/lib/python2.5/site-packages',
+  join(base, 'etc/eggs/tipfy.ext.appstats-0.6-py2.5.egg'),
+  join(base, 'etc/eggs/tipfy.ext.auth-0.6.4-py2.5.egg'),
+  join(base, 'etc/eggs/tipfy.ext.blobstore-0.6.1-py2.5.egg'),
+  join(base, 'etc/eggs/tipfy.ext.db-0.6.2-py2.5.egg'),
+  join(base, 'etc/eggs/tipfy.ext.debugger-0.6.1-py2.5.egg'),
+  join(base, 'etc/eggs/tipfy.ext.i18n-0.7.1-py2.5.egg'),
+  join(base, 'etc/eggs/tipfy.ext.jinja2-0.7-py2.5.egg'),
+  join(base, 'etc/eggs/tipfy.ext.mail-0.5.5-py2.5.egg'),
+  join(base, 'etc/eggs/tipfy.ext.session-0.6.2-py2.5.egg'),
+  join(base, 'etc/eggs/tipfy.ext.taskqueue-0.5.5-py2.5.egg'),
+  join(base, 'etc/eggs/tipfy.ext.wtforms-0.6-py2.5.egg'),
+  join(base, 'etc/eggs/tipfy.ext.xmpp-0.6-py2.5.egg'),
+  join(base, 'etc/eggs/WTForms-0.6-py2.5.egg'),
+  join(base, 'etc/eggs/Jinja2-2.5.2-py2.5.egg'),
+  join(base, 'etc/eggs/gaepytz-2010h-py2.5.egg'),
+  join(base, 'etc/eggs/Werkzeug-0.6.2-py2.5.egg'),
+  ]
+
+import babel.messages.frontend
+
+if __name__ == '__main__':
+    babel.messages.frontend.main()

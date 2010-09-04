@@ -1,0 +1,41 @@
+{% extends 'admin/layout.html' %}
+
+{% block body %}
+  <h1>All posts</h1>
+  {% if last_post != -1 %}
+    <p>Posts {{offset}} to {{last_post}}</p>
+  {% else %}
+    <p>
+      No posts yet.<br />
+      <a href="/admin/newpost">Write your first post.</a>
+    </p>
+  {% endif %}
+  {% set row_class = cycler('odd', 'even') %}
+  {% for post in posts %}
+    <div class="yui-gc list-item {{ row_class.next() }}">
+      <div class="yui-u first">
+        <a href="{{ url_for('admin/post', post_id=post.key().id()) }}">{{post.title|e}}</a>
+      </div>
+      <div class="yui-g">
+        <div class="yui-u first">
+          {% if post.path %}{{post.published|datetimeformat("%d %b, %Y")}}{% else %}Draft{% endif %}
+        </div>
+        <div class="yui-u">
+          {% if post.path %}
+            <a href="{{post.path}}">View</a>
+            |
+          {% endif %}
+          <a href="{{ url_for('admin/post', post_id=post.key().id()) }}">Edit</a>
+
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+
+  {% if offset != 0 %}
+    <a href="?start={{prev_offset}}&count={{count}}">&lt;- Previous</a>
+  {% endif %}
+  {% if posts|length > count %}
+    <a href="?start={{next_offset}}&count={{count}}">Next -></a>
+  {% endif %}
+{% endblock %}
