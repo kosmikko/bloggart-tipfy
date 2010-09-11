@@ -7,8 +7,8 @@ from google.appengine.ext import deferred
 import aetycoon
 
 import utils, markup, generators
-import apps.blog.config as config
-from apps.blog.staticcontent.models import StaticContent
+from .. import config
+from ..staticcontent.models import StaticContent
 
 if config.default_markup in markup.MARKUP_MAP:
   DEFAULT_MARKUP = config.default_markup

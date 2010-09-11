@@ -8,7 +8,7 @@ derived_file_type:
 
 handlers:
 - url: /(robots\.txt|favicon\.ico)
-  static_files: static/\1
+  static_files: templates/themes/default/static/\1
   upload: static/(.*)
 
 - url: /remote_api
@@ -19,8 +19,12 @@ handlers:
   script: main.py
   login: admin
 
-- url: /static
-  static_dir: static/
+- url: /admin/static
+  static_dir: templates/admin/static/
+
+- url: /static/([^/]+)/(.*)
+  static_files: templates/themes/\1/static/\2
+  upload: templates/themes/[^/]+/static/.*
 
 - url: /.*
   script: main.py

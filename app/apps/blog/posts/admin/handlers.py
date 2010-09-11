@@ -43,10 +43,9 @@ class AdminHandler(BaseHandler):
     """
     Show a list of posts
     """
-    #offset = int(self.request.get('start', 0))
-    #count = int(self.request.get('count', 20))
-    offset = 0
-    count = 20
+    offset = int(self.request.args.get('start', 0))
+    count = int(self.request.args.get('count', 20))
+
     posts = BlogPost.all().order('-published').fetch(count, offset)
     template_vals = {
     'is_admin': True,
