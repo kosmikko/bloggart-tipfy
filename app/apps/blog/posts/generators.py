@@ -7,7 +7,6 @@ from google.appengine.ext import db
 from google.appengine.ext import deferred
 
 from .. import config
-import markup
 from .. import utils
 from ..staticcontent.models import StaticContent 
 

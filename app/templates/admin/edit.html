@@ -1,9 +1,13 @@
 {% extends 'admin/layout.html' %}
 {% block title %}{% if form.instance %}Edit{% else %}New{% endif %} Post{% endblock %}
+{% block head %}
+<script type="text/javascript" charset="utf-8"
+        src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+{% endblock %}
 {% block body %}
 <h1>{% if form.instance %}Edit{% else %}New{% endif %} Post</h1>
   {% from '_form_macros.html' import form_field %}
-    <form method="post" action="" enctype="multipart/form-data" class="tipfy-form">
+    <form method="post" action="" enctype="multipart/form-data" class="tipfy-form" id="post-form">
       <ol>
         <li>{{ form_field(form.title, class='medium') }}</li>
         <li>{{ form_field(form.body, class='medium') }}</li>
@@ -16,4 +20,27 @@
         <input id="btn_preview" type="button" value="Preview" />        
       </fieldset>
     </form>
+    
+    <div id="preview" style="display:none">
+		<h2>Post Preview</h2>
+        <div id="preview_content">
+        </div>
+		<input id="hide-preview" type="button" value="Close Preview" />
+    </div>
+
+    <script type="text/javascript">
+         $(document).ready(function(){
+             $('#btn_preview').bind('click', function() {
+                $.post("/admin/post/preview/", $("#post-form").serialize(),function(data){
+                    $('#preview_content').html(data.content);
+                }, "json");
+                $('#preview').show();
+             });
+             $('#hide-preview').bind('click', function() {   
+                $('#preview').hide();  
+             });               
+         });
+         
+    </script>
+        
 {% endblock %}

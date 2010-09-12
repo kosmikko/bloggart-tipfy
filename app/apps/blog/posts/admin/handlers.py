@@ -7,7 +7,7 @@ import os, logging, datetime
 from google.appengine.ext import db
 
 from tipfy import (RequestHandler, RequestRedirect, Response, abort,
-    cached_property, redirect, url_for)
+    cached_property, redirect, url_for, render_json_response)
 from tipfy.ext.auth import AppEngineAuthMixin, login_required, user_required, admin_required
 
 from tipfy.ext.jinja2 import Jinja2Mixin, render_response, render_template
@@ -18,6 +18,7 @@ from ... import config
 from ..models import BlogPost
 from utils import with_post
 from forms import PostForm
+from .. import markup
 
 class BaseHandler(RequestHandler, AppEngineAuthMixin, Jinja2Mixin):
   def render_to_response(self, template_name, template_vals=None, theme=None):
@@ -94,10 +95,39 @@ class PostHandler(BaseHandler):
   def get_form(self, post):
     return PostForm(self.request, obj=post)
 
-class PreviewHandler(BaseHandler):
-  def get(self, post):
-    if post.published == datetime.datetime.max:
-      post.published = datetime.datetime.now()
-    #self.response.out.write(utils.render_template('post.html',
-    #                                              {'post': post}))
+class DeleteHandler(BaseHandler):
+  @with_post
+  def post(self, post):
+    if post.path:# Published post
+      post.remove()
+    else:# Draft
+      post.delete()
+    self.render_to_response("deleted.html", None)
+        
+class PreviewHandler(RequestHandler):
+  def get(self):
+    logging.info('get called')
+    return Response('test')  
+    
+  def post(self, **kwargs):
+    body = self.request.form.get('body')
+    title = self.request.form.get('title')  
+    body_markup = self.request.form.get('body_markup')
 
+    try:
+        post = BlogPost(title=title, body=body, body_markup=body_markup)  
+        html = markup.render_body(post)
+        result = {'success': 'True',
+                  'content': html}
+    except Exception, e:
+        error = ("Unable to markup data: %s" % e)
+        result = {'success': 'False',
+                    'content': error}
+    return render_json_response(result)     
+    
+class RegenerateHandler(BaseHandler):
+  def post(self):
+    regen = post_deploy.PostRegenerator()
+    deferred.defer(regen.regenerate)
+    deferred.defer(post_deploy.post_deploy, post_deploy.BLOGGART_VERSION)
+    self.render_to_response("regenerating.html")

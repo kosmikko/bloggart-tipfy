@@ -3,6 +3,7 @@
     <head>
         <title>{% block title %}Blog Admin{% endblock %}</title>
         <link rel="stylesheet" type="text/css" href="/admin/static/styles/screen.css">
+        {% block head %}{% endblock %}        
     </head>
     <body>
         <div class="yui-d1">
@@ -36,19 +37,5 @@
                 </div>
             </div>
         </div>
-
-        {%- block body_extra %}
-            <script src="/static/scripts/scripts.js"></script>
-
-            {%- block messages -%}
-                <script>
-                tipfy.instances = {};
-                tipfy.instances.messages = new tipfy.ui.Messages('tipfy-messages');
-                {% if messages %}
-                tipfy.instances.messages.addMessages({{ messages }});
-                {% endif %}
-                </script>
-            {%- endblock -%}
-        {% endblock %}
     </body>
 </html>

@@ -16,6 +16,10 @@ def get_rules(app):
         Rule('/admin/', endpoint='admin/index', handler='apps.blog.posts.admin.handlers.AdminHandler'),
         Rule('/admin/newpost/', endpoint='admin/newpost', handler='apps.blog.posts.admin.handlers.PostHandler'),
         Rule('/admin/post/<int:post_id>', endpoint='admin/post', handler='apps.blog.posts.admin.handlers.PostHandler'),
+        Rule('/admin/regenerate/', endpoint='admin/regenerate', handler='apps.blog.posts.admin.handlers.RegenerateHandler'),
+        Rule('/admin/post/delete/<int:post_id>', endpoint='admin/delete', handler='apps.blog.posts.admin.handlers.DeleteHandler'),
+        Rule('/admin/post/preview/', endpoint='admin/preview', handler='apps.blog.posts.admin.handlers.PreviewHandler'),
+        Rule('/admin/post/preview/<int:post_id>', endpoint='admin/preview/post', handler='apps.blog.posts.admin.handlers.PreviewHandler'),
     ]
 
     return rules
