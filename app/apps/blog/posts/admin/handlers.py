@@ -5,6 +5,7 @@ Admin handlers
 import os, logging, datetime
 
 from google.appengine.ext import db
+from google.appengine.ext import deferred
 
 from tipfy import (RequestHandler, RequestRedirect, Response, abort,
     cached_property, redirect, url_for, render_json_response)
@@ -19,6 +20,7 @@ from ..models import BlogPost
 from utils import with_post
 from forms import PostForm
 from .. import markup
+from .. import post_deploy
 
 class BaseHandler(RequestHandler, AppEngineAuthMixin, Jinja2Mixin):
   def render_to_response(self, template_name, template_vals=None, theme=None):
@@ -26,8 +28,8 @@ class BaseHandler(RequestHandler, AppEngineAuthMixin, Jinja2Mixin):
     context = {
     'config': config
     }
-
-    context.update(template_vals)
+    if template_vals:
+      context.update(template_vals)
 
     return self.render_response(template, **context)
 
@@ -102,7 +104,7 @@ class DeleteHandler(BaseHandler):
       post.remove()
     else:# Draft
       post.delete()
-    self.render_to_response("deleted.html", None)
+    return self.render_to_response("deleted.html", None)
         
 class PreviewHandler(RequestHandler):
   def get(self):
@@ -129,5 +131,5 @@ class RegenerateHandler(BaseHandler):
   def post(self):
     regen = post_deploy.PostRegenerator()
     deferred.defer(regen.regenerate)
-    deferred.defer(post_deploy.post_deploy, post_deploy.BLOGGART_VERSION)
-    self.render_to_response("regenerating.html")
+    deferred.defer(post_deploy.post_deploy, post_deploy.BLOG_VERSION)
+    return self.render_to_response("regenerating.html")
