@@ -51,7 +51,12 @@ post_deploy_tasks.append(generate_static_pages([
 
 def regenerate_all(previous_version):
   if previous_version:
-    logging.info(previous_version)
+    if isinstance(previous_version, tuple):
+        previous_version=models.VersionInfo(
+                key_name=os.environ['CURRENT_VERSION_ID'],
+                version_major = BLOG_VERSION[0],
+                version_minor = BLOG_VERSION[1],
+                version_rev = BLOG_VERSION[2])
     ver_tuple = (
       previous_version.version_major,
       previous_version.version_minor,
@@ -105,4 +110,3 @@ def post_deploy(previous_version):
       version_minor = BLOG_VERSION[1],
       version_rev = BLOG_VERSION[2])
   new_version.put()
-  logging.info(new_version)
