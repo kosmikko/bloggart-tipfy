@@ -1,12 +1,9 @@
-#!/opt/local/Library/Frameworks/Python.framework/Versions/2.5/Resources/Python.app/Contents/MacOS/Python
+#!/usr/local/bin/python
 
 import sys
 sys.path[0:0] = [
-  '/opt/local/lib/python2.5/site-packages',
-  '/opt/local/lib/python2.5/site-packages',
-  '/opt/local/lib/python2.5/site-packages',
-  '/opt/local/lib/python2.5/site-packages',
-  '/Users/mikko/Work/Projects/mlblog/etc/eggs/zc.buildout-1.4.4-py2.5.egg',
+  '/Volumes/Store/Users/mikko/Work/Projects/bloggart-tipfy/etc/eggs/distribute-0.6.14-py2.7.egg',
+  '/Volumes/Store/Users/mikko/Work/Projects/bloggart-tipfy/etc/eggs/zc.buildout-1.4.4-py2.7.egg',
   ]
 
 import zc.buildout.buildout

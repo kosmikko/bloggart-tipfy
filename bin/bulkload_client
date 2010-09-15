@@ -1,4 +1,4 @@
-#!/opt/local/Library/Frameworks/Python.framework/Versions/2.5/Resources/Python.app/Contents/MacOS/Python
+#!/usr/local/bin/python
 
 import os
 
@@ -11,7 +11,7 @@ sys.path[0:0] = [
   join(base, 'app'),
   join(base, 'app/lib'),
   join(base, 'app/distlib'),
-  join(base, 'etc/eggs/appfy.recipe.gae-0.8-py2.5.egg'),
+  join(base, 'etc/eggs/appfy.recipe.gae-0.8-py2.7.egg'),
   join(base, 'etc/parts/google_appengine'),
   ]
 
