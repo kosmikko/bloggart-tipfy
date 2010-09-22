@@ -1,0 +1,34 @@
+body{
+	font-family: 'Georgia', serif;
+	font-size: 17px;
+	color: #444;
+}
+a {
+    color: #0489B3;
+    outline: medium none;
+    text-decoration: none;
+}
+section a:hover, article a:hover {
+	text-decoration: underline;
+}
+
+h1 a{
+	text-decoration:none;
+}	
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+.clear {
+    clear: both;
+}
+.post-info {
+  color: #B0B0B0;
+  font-size: 0.95em;
+  padding-top: 3px;
+}
+.postmeta {
+  padding: 5px;
+}

@@ -20,6 +20,7 @@ def get_rules(app):
         Rule('/admin/post/delete/<int:post_id>', endpoint='admin/delete', handler='apps.blog.posts.admin.handlers.DeleteHandler'),
         Rule('/admin/post/preview/', endpoint='admin/preview', handler='apps.blog.posts.admin.handlers.PreviewHandler'),
         Rule('/admin/post/preview/<int:post_id>', endpoint='admin/preview/post', handler='apps.blog.posts.admin.handlers.PreviewHandler'),
+        Rule('/admin/test/', endpoint='blog/test', handler='apps.blog.posts.admin.handlers.TestHandler'),
     ]
 
     return rules

@@ -1,0 +1,43 @@
+{% extends "themes/%s/layout.html" % config.theme %}
+{% block title %}{{post.title|e}} - {{config.blog_name}}{% endblock %}
+{% block body %}
+<header><h2>{{post.title|escape}}</h2>
+
+<p class="post-info">
+  Posted by {{config.author_name}}
+  on <span class="date">{{post.published|datetimeformat(config.date_format)}}</span>
+  {% if post.tags %}
+  | Tagged as
+  {% for tag in post.tag_pairs %}
+  <a href="{{config.url_prefix}}/tag/{{tag.1|e}}">{{tag.0|e}}</a>{% if not loop.last %},{% endif %}
+  {% endfor %}
+  {% endif %}
+</p>
+</header>
+
+{{post.rendered}}
+{% endblock %}
+
+{% block pagenav %}
+{% if prev %}
+<a id="prev" href="{{config.url_prefix}}{{prev.path}}">Previous Post</a>
+{% endif %}
+{% if next %}
+<a id="next" href="{{config.url_prefix}}{{next.path}}">Next Post</a>
+{% endif %}
+{% endblock %}
+
+{% block comments %}
+{% if config.disqus_forum %}
+<h3 id="comments">Comments</h3>
+<div id="disqus_thread"></div>
+{% if devel %}
+<script type="text/javascript">
+  disqus_developer = 1;
+</script>
+{% endif %}
+<script type="text/javascript" src="http://disqus.com/forums/{{config.disqus_forum}}/embed.js"></script>
+<noscript><a href="http://disqus.com/forums/{{config.disqus_forum}}/?url=ref">View the discussion thread.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+{% endif %}
+{% endblock %}

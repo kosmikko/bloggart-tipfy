@@ -133,3 +133,20 @@ class RegenerateHandler(BaseHandler):
     deferred.defer(regen.regenerate)
     deferred.defer(post_deploy.post_deploy, post_deploy.BLOG_VERSION)
     return self.render_to_response("regenerating.html")
+
+class TestHandler(RequestHandler, Jinja2Mixin):
+  """
+  Just for testing themes
+  """
+  def render_to_response(self, template_name, template_vals=None, theme=None):
+    template = "themes/%s/%s" % (config.theme, template_name)
+    context = {
+      'config': config
+    }
+    if template_vals:
+      context.update(template_vals)
+
+    return self.render_response(template, **context)
+
+  def get(self):
+    return self.render_to_response("test.html", None)

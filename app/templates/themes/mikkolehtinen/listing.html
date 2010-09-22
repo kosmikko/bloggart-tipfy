@@ -1,0 +1,40 @@
+{% extends "themes/%s/layout.html" % config.theme %}
+{% block title %}{{config.blog_name}}{% endblock %}
+{% block body %}
+	{# newly installed blog with no_post #}
+	{% if no_post %}
+		<p>Create some new posts at the Admin Page.</p>
+		<p>
+		<a href="/admin/newpost">Go to the Admin Page.</a>
+		</p>
+	{% endif %}
+
+  {% for post in posts %}
+    <h2><a href="{{config.url_prefix}}{{post.path}}">{{post.title}}</a></h2>
+    <p class="post-info">
+      Posted by {{config.author_name}}
+      {% if post.tags %}
+        | Filed under
+        {% for tag in post.tag_pairs %}
+          <a href="{{config.url_prefix}}/tag/{{tag[1]|e}}">{{tag[0]|e}}</a>{% if not loop.last %},{% endif %}
+        {% endfor %}
+      {% endif %}
+    </p>
+   {{post.summary}}
+    <p class="postmeta">
+      <a href="{{config.url_prefix}}{{post.path}}" class="readmore">Read more</a> |
+      {% if config.disqus_forum %}
+        <a href="{{config.url_prefix}}{{post.path}}#disqus_thread" class="readmore">Comments</a> |
+      {% endif %}
+      <span class="date">{{post.published|datetimeformat(config.date_format)}}</span>
+    </p>
+  {% endfor %}
+
+  {% if prev_page %}
+    <a id="prev" href="{{prev_page}}">Newer</a>
+  {% endif %}
+  {% if next_page %}
+    <a id="next" href="{{next_page}}">Older</a>
+  {% endif %}
+
+{% endblock %}
