@@ -32,8 +32,12 @@ h2 {
   color: #B0B0B0;
   font-size: 0.95em;
   padding-top: 3px;
+  margin: 0 0 10px 0;
 }
-
 .post {
   margin-bottom: 60px;
+}
+
+.gist {
+  margin: 20px 0;
 }

@@ -1,8 +1,8 @@
 # Name of the blog
-blog_name = 'My Blog'
+blog_name = 'mikkolehtinen.com'
 
 # Your name (used for copyright info)
-author_name = 'the author'
+author_name = 'Mikko Lehtinen'
 
 # (Optional) slogan
 slogan = 'This is my blog'
@@ -25,8 +25,6 @@ post_path_format = '/%(year)d/%(month)02d/%(slug)s'
 # enough, you can edit themes/default/base.html instead.
 sidebars = [
   ('Menu', [
-    '<a href="http://blog.notdot.net/">Nick Johnsonz</a>',
-    '<a href="http://www.billkatz.com/">Bill Katz</a>',
   ]),
 ]
 

@@ -24,7 +24,7 @@
 </head>
 
 <body>
-<header>
+<header class="wrapper">
   <hgroup id="logo" class="left col">
     <h1><a class="tk-museo-slab"href="/">{{config.blog_name}}</a></h1>
   </hgroup>
@@ -39,15 +39,24 @@
     {% endfor %}
   </nav>
 </header>
-<article class="clear">
-  {% block body %}{% endblock %}
-  <section class="comments">
-  {% block comments %}{% endblock %}
+<div id="main" class="wrapper">
+  <article class="clear">
+    {% block body %}{% endblock %}
+    <section class="comments">
+    {% block comments %}{% endblock %}
+    </section>
+  </article>
+  <section id="pagenav">
+  {% block pagenav %}{% endblock %}
   </section>
-</article>
-<section id="pagenav">
-{% block pagenav %}{% endblock %}
+</div>
+<section id="footer">
+  <div class="wrapper">
+  &copy; 2010 Mikko Lehtinen. Powered by <a href="http://www.tipfy.org/">Tipfy</a> on <a href="http://code.google.com/appengine/">App Engine</a>. Source code available at
+    <a href="http://github.com/mikkolehtinen/bloggart-tipfy">Github</a>. Follow me on <a href="http://twitter.com/kosmikko">Twitter</a>.
+  </div>
 </section>
+
 </body>
 
 </html>
