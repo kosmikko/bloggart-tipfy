@@ -20,10 +20,10 @@
 
 {% block pagenav %}
 {% if prev %}
-<a id="prev" href="{{config.url_prefix}}{{prev.path}}">Previous Post</a>
+<a id="prev" href="{{config.url_prefix}}{{prev.path}}">&lsaquo; Previous Post</a>
 {% endif %}
 {% if next %}
-<a id="next" href="{{config.url_prefix}}{{next.path}}">Next Post</a>
+<a id="next" href="{{config.url_prefix}}{{next.path}}">Next Post &rsaquo;</a>
 {% endif %}
 {% endblock %}
 

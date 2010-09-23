@@ -101,6 +101,18 @@ nav a {
 nav a:hover, nav li.current a { background-color: #0489B3; }
 nav a.about:hover, nav li.current a.about { background-color: #68BA58; }
 
+#pagenav {
+  border-top: 1px dotted #0489B3;
+  margin-top: 60px;
+  font-size: 0.95em;
+}
+#pagenav #prev
+{
+  float:left;
+}
+#pagenav #next {
+  float:right;
+}
 #logo {
 
 }

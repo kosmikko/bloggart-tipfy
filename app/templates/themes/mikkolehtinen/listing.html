@@ -10,9 +10,11 @@
 	{% endif %}
 
   {% for post in posts %}
+  <div class="post">
     <h2><a href="{{config.url_prefix}}{{post.path}}">{{post.title}}</a></h2>
     <p class="post-info">
       Posted by {{config.author_name}}
+      on <span class="date">{{post.published|datetimeformat(config.date_format)}}</span>
       {% if post.tags %}
         | Filed under
         {% for tag in post.tag_pairs %}
@@ -22,19 +24,21 @@
     </p>
    {{post.summary}}
     <p class="postmeta">
-      <a href="{{config.url_prefix}}{{post.path}}" class="readmore">Read more</a> |
+      <a href="{{config.url_prefix}}{{post.path}}" class="readmore">Read more &rarr;</a>
       {% if config.disqus_forum %}
         <a href="{{config.url_prefix}}{{post.path}}#disqus_thread" class="readmore">Comments</a> |
       {% endif %}
-      <span class="date">{{post.published|datetimeformat(config.date_format)}}</span>
-    </p>
-  {% endfor %}
 
+    </p>
+  </div>
+  {% endfor %}
+{% endblock %}
+
+{% block pagenav %}
   {% if prev_page %}
-    <a id="prev" href="{{prev_page}}">Newer</a>
+    <a id="next" href="{{prev_page}}">Newer &rsaquo;</a>
   {% endif %}
   {% if next_page %}
-    <a id="next" href="{{next_page}}">Older</a>
+    <a id="prev" href="{{next_page}}">&lsaquo; Older</a>
   {% endif %}
-
 {% endblock %}

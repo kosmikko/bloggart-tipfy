@@ -31,7 +31,7 @@ sidebars = [
 ]
 
 # Number of entries per page in indexes.
-posts_per_page = 10
+posts_per_page = 5
 
 # The mime type to serve HTML files as.
 html_mime_type = "text/html; charset=utf-8"
