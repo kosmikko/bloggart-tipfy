@@ -29,15 +29,21 @@
 
 {% block comments %}
 {% if config.disqus_forum %}
-<h3 id="comments">Comments</h3>
-<div id="disqus_thread"></div>
-{% if devel %}
-<script type="text/javascript">
-  disqus_developer = 1;
-</script>
-{% endif %}
-<script type="text/javascript" src="http://disqus.com/forums/{{config.disqus_forum}}/embed.js"></script>
-<noscript><a href="http://disqus.com/forums/{{config.disqus_forum}}/?url=ref">View the discussion thread.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  {% if config.DEBUG %}
+    <script type="text/javascript">
+      disqus_developer = 1;
+    </script>
+  {% endif %}
+  <h3 id="comments">Comments</h3>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    (function() {
+     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+     dsq.src = 'http://{{config.disqus_forum}}.disqus.com/embed.js';
+     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript><a href="http://disqus.com/forums/{{config.disqus_forum}}/?url=ref">View the discussion thread.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
 {% endif %}
 {% endblock %}

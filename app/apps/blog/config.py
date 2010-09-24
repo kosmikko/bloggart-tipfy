@@ -1,3 +1,7 @@
+import os
+DEV_SERVER = os.environ.get('SERVER_SOFTWARE', '').startswith('Development/')
+DEBUG = TEMPLATE_DEBUG = DEV_SERVER
+
 # Name of the blog
 blog_name = 'mikkolehtinen.com'
 
@@ -8,7 +12,7 @@ author_name = 'Mikko Lehtinen'
 slogan = 'This is my blog'
 
 # The hostname this site will primarially serve off (used for Atom feeds)
-host = 'localhost:8080'
+host = 'http://www.mikkolehtinen.com'
 
 # Selects the theme to use. Theme names correspond to directories under
 # the 'themes' directory, containing templates and static content.
@@ -36,7 +40,7 @@ html_mime_type = "text/html; charset=utf-8"
 
 # To use disqus for comments, set this to the 'short name' of the disqus forum
 # created for the purpose.
-disqus_forum = None
+disqus_forum = 'mikkolehtinen'
 
 # Length (in words) of summaries, by default
 summary_length = 200

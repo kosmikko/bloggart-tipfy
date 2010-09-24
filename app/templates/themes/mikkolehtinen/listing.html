@@ -16,7 +16,7 @@
       Posted by {{config.author_name}}
       on <span class="date">{{post.published|datetimeformat(config.date_format)}}</span>
       {% if post.tags %}
-        | Filed under
+        | Tagged as
         {% for tag in post.tag_pairs %}
           <a href="{{config.url_prefix}}/tag/{{tag[1]|e}}">{{tag[0]|e}}</a>{% if not loop.last %},{% endif %}
         {% endfor %}
@@ -24,11 +24,10 @@
     </p>
    {{post.summary}}
     <p class="postmeta">
-      <a href="{{config.url_prefix}}{{post.path}}" class="readmore">Read more &rarr;</a>
       {% if config.disqus_forum %}
         <a href="{{config.url_prefix}}{{post.path}}#disqus_thread" class="readmore">Comments</a> |
       {% endif %}
-
+      <a href="{{config.url_prefix}}{{post.path}}" class="readmore">Read more &rarr;</a>
     </p>
   </div>
   {% endfor %}
@@ -40,5 +39,17 @@
   {% endif %}
   {% if next_page %}
     <a id="prev" href="{{next_page}}">&lsaquo; Older</a>
+  {% endif %}
+
+  {% if config.disqus_forum %}
+    <script type="text/javascript">
+      // Get Disqus comment count to links
+      var disqus_shortname = '{{config.disqus_forum}}';
+      (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.src = 'http://disqus.com/forums/{{config.disqus_forum}}/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+      }());
+    </script>
   {% endif %}
 {% endblock %}

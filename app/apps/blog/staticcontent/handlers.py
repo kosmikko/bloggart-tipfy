@@ -42,7 +42,7 @@ class StaticContentHandler(BaseHandler):
     return response
 
   def get(self, path=''):
-    content = StaticContent.get("/%s" % path.lower())
+    content = StaticContent.get("/%s" % path)
     if not content:
       if path == '':
         return self.render_to_response("themes/%s/listing.html" % config.theme,

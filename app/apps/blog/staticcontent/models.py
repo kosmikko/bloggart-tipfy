@@ -41,7 +41,6 @@ class StaticContent(db.Model):
       entity = StaticContent.get_by_key_name(path)
       if entity:
         memcache.set(path, db.model_to_protobuf(entity).Encode())
-
     return entity
 
   @classmethod
