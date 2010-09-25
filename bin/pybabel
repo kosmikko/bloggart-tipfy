@@ -23,9 +23,9 @@ sys.path[0:0] = [
   join(base, 'etc/eggs/tipfy.ext.taskqueue-0.5.5-py2.7.egg'),
   join(base, 'etc/eggs/tipfy.ext.wtforms-0.6-py2.7.egg'),
   join(base, 'etc/eggs/tipfy.ext.xmpp-0.6-py2.7.egg'),
-  join(base, 'etc/eggs/WTForms-0.6-py2.7.egg'),
+  join(base, 'etc/eggs/WTForms-0.6.1-py2.7.egg'),
   join(base, 'etc/eggs/Jinja2-2.5.2-py2.7.egg'),
-  join(base, 'etc/eggs/gaepytz-2010h-py2.7.egg'),
+  join(base, 'etc/eggs/gaepytz-2010l-py2.7.egg'),
   join(base, 'etc/eggs/Werkzeug-0.6.2-py2.7.egg'),
   ]
 

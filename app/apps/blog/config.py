@@ -1,22 +1,18 @@
-import os
-DEV_SERVER = os.environ.get('SERVER_SOFTWARE', '').startswith('Development/')
-DEBUG = TEMPLATE_DEBUG = DEV_SERVER
-
 # Name of the blog
-blog_name = 'mikkolehtinen.com'
+blog_name = 'My Blog'
 
 # Your name (used for copyright info)
-author_name = 'Mikko Lehtinen'
+author_name = 'the author'
 
 # (Optional) slogan
 slogan = 'This is my blog'
 
 # The hostname this site will primarially serve off (used for Atom feeds)
-host = 'http://www.mikkolehtinen.com'
+host = 'localhost:8080'
 
 # Selects the theme to use. Theme names correspond to directories under
 # the 'themes' directory, containing templates and static content.
-theme = 'mikkolehtinen'
+theme = 'default'
 
 # Defines the URL organization to use for blog postings. Valid substitutions:
 #   slug - the identifier for the post, derived from the title
@@ -29,6 +25,8 @@ post_path_format = '/%(year)d/%(month)02d/%(slug)s'
 # enough, you can edit themes/default/base.html instead.
 sidebars = [
   ('Menu', [
+    '<a href="http://blog.notdot.net/">Nick Johnsonz</a>',
+    '<a href="http://www.billkatz.com/">Bill Katz</a>',
   ]),
 ]
 
@@ -40,7 +38,7 @@ html_mime_type = "text/html; charset=utf-8"
 
 # To use disqus for comments, set this to the 'short name' of the disqus forum
 # created for the purpose.
-disqus_forum = 'mikkolehtinen'
+disqus_forum = None
 
 # Length (in words) of summaries, by default
 summary_length = 200
